@@ -1,0 +1,20 @@
+{
+  "name": "security-goals-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "minikube": "kustomize build manifests/overlays/minikube | kubectl apply -f -",
+    "delete-minikube": "kustomize build manifests/overlays/minikube | kubectl delete -f -"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cds-snc/security-goals-demo.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cds-snc/security-goals-demo/issues"
+  },
+  "homepage": "https://github.com/cds-snc/security-goals-demo#readme"
+}
