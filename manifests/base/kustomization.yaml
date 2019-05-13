@@ -3,6 +3,10 @@ resources:
   - mongo-claim.yaml
   - mongo-deployment.yaml
   - mongo-service.yaml
+  - api-deployment.yaml
+  - api-service.yaml
+  - runner-deployment.yaml
+  - runner-service.yaml
   - cluster-role-binding.yaml
   - cluster-role.yaml
   - traefik-ingress.yaml

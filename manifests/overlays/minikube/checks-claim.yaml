@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: mongo-claim
+  name: checks-claim
   namespace: security-goals
 spec:
   accessModes:

@@ -1,4 +1,5 @@
 bases:
   - ../../base
 resources:
+  - checks-claim.yaml
   - traefik-ingress-service.yaml
