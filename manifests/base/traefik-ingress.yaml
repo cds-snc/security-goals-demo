@@ -4,6 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: traefik
   name: traefik-ingress
+  namespace: security-goals
 spec:
   rules:
     - http:
@@ -11,4 +12,8 @@ spec:
           - path: /security-goals
             backend:
               serviceName: api
+              servicePort: 3000
+          - path: /runner
+            backend:
+              serviceName: runner
               servicePort: 3000

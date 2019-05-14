@@ -29,7 +29,7 @@ spec:
             - name: PORT
               value: '3000'
             - name: WEBHOOK_URL
-              value: '/run_security_posture'
+              value: 'run_security_posture'
           resources: {}
           livenessProbe:
             httpGet:

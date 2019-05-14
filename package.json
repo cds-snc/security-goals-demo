@@ -4,6 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "checks": "kubectl apply -f manifests/checks",
+    "delete-checks": "kubectl delete -f manifests/checks",
     "minikube": "kustomize build manifests/overlays/minikube | kubectl apply -f -",
     "delete-minikube": "kustomize build manifests/overlays/minikube | kubectl delete -f -"
   },
