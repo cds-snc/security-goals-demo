@@ -30,6 +30,10 @@ spec:
               value: '3000'
             - name: WEBHOOK_URL
               value: 'run_security_posture'
+            - name: WEBHOOK_URL
+              value: 'run_security_posture'
+            - name: GITHUB_REPO
+              value: 'cds-snc/cra-alpha'
           resources: {}
           livenessProbe:
             httpGet:

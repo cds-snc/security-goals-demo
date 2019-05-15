@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: sa-11-4
+  namespace: security-goals
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: 'gcr.io/security-goals/checks/github-reviews'
+          imagePullPolicy: Always
+          name: 'sa-11-4'
+          env:
+            - name: ORIGIN
+              value: 'gcr.io/security-goals/checks/github-reviews'
+            - name: COMPONENT
+              value: 'Infrastructure'
+            - name: DESCRIPTION
+              value: 'The application performs code review on its pull requests.'
+            - name: SATISFIES
+              value: 'SA-11,SA-11 (4)'
+            - name: REPO_URL
+              value: 'https://github.com/cds-snc/cra-alpha'
+          volumeMounts:
+            - name: compliance-checks
+              mountPath: /checks
+      volumes:
+        - name: compliance-checks
+          persistentVolumeClaim:
+            claimName: checks-claim
