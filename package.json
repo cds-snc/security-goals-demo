@@ -6,6 +6,8 @@
   "scripts": {
     "checks": "kubectl apply -f manifests/checks",
     "delete-checks": "kubectl delete -f manifests/checks",
+    "gke": "kustomize build manifests/overlays/gke | kubectl apply -f -",
+    "delete-gke": "kustomize build manifests/overlays/gke | kubectl delete -f -",
     "minikube": "kustomize build manifests/overlays/minikube | kubectl apply -f -",
     "delete-minikube": "kustomize build manifests/overlays/minikube | kubectl delete -f -"
   },
