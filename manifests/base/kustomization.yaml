@@ -5,6 +5,8 @@ resources:
   - mongo-service.yaml
   - api-deployment.yaml
   - api-service.yaml
+  - app-deployment.yaml
+  - app-service.yaml
   - runner-deployment.yaml
   - runner-service.yaml
   - cluster-role-binding.yaml
