@@ -21,3 +21,7 @@ spec:
             backend:
               serviceName: runner
               servicePort: 3000
+          - path: /pdf-report
+            backend:
+              serviceName: pdf-report
+              servicePort: 3000

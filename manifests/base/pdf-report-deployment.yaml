@@ -2,15 +2,15 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: api 
-  name:  api
+    app: pdf-report 
+  name:  pdf-report
   namespace: security-goals
 spec:
   replicas: 1
   revisionHistoryLimit: 5
   selector:
     matchLabels:
-      app: api 
+      app: pdf-report 
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,48 +19,33 @@ spec:
   template:
     metadata:
       labels:
-        app: api
+        app: pdf-report
     spec:
       containers:
-        - image: gcr.io/security-goals/api
+        - image: gcr.io/security-goals/pdf-report
           imagePullPolicy: Always
-          name: api 
+          name: pdf-report 
           env:
             - name: PORT
               value: '3000'
-            - name: CHECKS_PATH
-              value: '/checks'
-            - name: DEFINITIONS_URL
-              value: 'https://raw.githubusercontent.com/cds-snc/ITSG-33-definitions/master/ITSG-33a.yaml'
-            - name: DB_URI
-              value: 'mongodb://mongo.security-goals.svc.cluster.local:27017/compliance'
-            - name: DB_USER
-              value: ''
-            - name: DB_PASS
-              value: ''
+            - name: API_URL
+              value: 'https://security-goals-demo.cdssandbox.xyz/security-goals/api'
           resources: {}
           livenessProbe:
             httpGet:
-              path: /monitoring/alive
+              path: /alive
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 5
           readinessProbe:
             httpGet:
-              path: /monitoring/ready
+              path: /ready
               port: 3000
             initialDelaySeconds: 5
             periodSeconds: 5 
-          volumeMounts:
-            - name: compliance-checks
-              mountPath: /checks
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
-      volumes:
-        - name: compliance-checks
-          persistentVolumeClaim:
-            claimName: checks-claim
 status: {}
