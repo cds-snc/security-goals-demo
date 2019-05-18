@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: 'kube-hunter-scan'
+  namespace: security-goals
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: 'gcr.io/security-goals/checks/kube-hunter-scan:latest'
+          imagePullPolicy: Always
+          name: 'kube-hunter-scan'
+          env:
+            - name: ORIGIN
+              value: 'gcr.io/security-goals/checks/kube-hunter-scan:latest'
+            - name: COMPONENT
+              value: 'Infrastructure'
+            - name: DESCRIPTION
+              value: 'The uses Kube Hunter to scan for vulnerabilities.'
+            - name: SATISFIES
+              value: 'RA-5'
+          volumeMounts:
+            - name: compliance-checks
+              mountPath: /checks
+      volumes:
+        - name: compliance-checks
+          persistentVolumeClaim:
+            claimName: checks-claim

@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: au-8-1
+  namespace: security-goals
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: 'gcr.io/security-goals/checks/pod-exists:latest'
+          imagePullPolicy: Always
+          name: 'au-8-1'
+          env:
+            - name: ORIGIN
+              value: 'gcr.io/security-goals/checks/pod-exists:latest'
+            - name: COMPONENT
+              value: 'Infrastructure'
+            - name: DESCRIPTION
+              value: 'The cluster uses Fluentd for logging to a centralized location.'
+            - name: SATISFIES
+              value: 'AU-8,AU-8 (1),SI-11'
+            - name: NEEDLE
+              value: 'fluentd'
+          volumeMounts:
+            - name: compliance-checks
+              mountPath: /checks
+      volumes:
+        - name: compliance-checks
+          persistentVolumeClaim:
+            claimName: checks-claim
