@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: si-5
+  namespace: security-goals
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: 'gcr.io/security-goals/checks/github-snyk'
+          imagePullPolicy: Always
+          name: 'si-5'
+          env:
+            - name: ORIGIN
+              value: 'gcr.io/security-goals/checks/github-snyk'
+            - name: COMPONENT
+              value: 'Infrastructure'
+            - name: DESCRIPTION
+              value: 'The application uses snyk to detect package vulnerabilities.'
+            - name: SATISFIES
+              value: 'SI-5'
+            - name: REPO_URL
+              value: 'https://github.com/cds-snc/cra-alpha'
+          volumeMounts:
+            - name: compliance-checks
+              mountPath: /checks
+      volumes:
+        - name: compliance-checks
+          persistentVolumeClaim:
+            claimName: checks-claim
