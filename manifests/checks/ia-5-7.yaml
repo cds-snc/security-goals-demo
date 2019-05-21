@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: ia-5-7
+  namespace: security-goals
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: "gcr.io/security-goals/checks/url-contains"
+          imagePullPolicy: Always
+          name: "ia-5-7"
+          env:
+            - name: ORIGIN
+              value: "gcr.io/security-goals/checks/url-contains"
+            - name: COMPONENT
+              value: "Source code"
+            - name: DESCRIPTION
+              value: "This applications scans for secrets as part of it's CI pipeline"
+            - name: SATISFIES
+              value: "IA-5 (7)"
+            - name: URL
+              value: "https://raw.githubusercontent.com/cds-snc/cra-alpha/master/.github/main.workflow"
+            - name: NEEDLE
+              value: "seekret-github-action"
+          volumeMounts:
+            - name: compliance-checks
+              mountPath: /checks
+      volumes:
+        - name: compliance-checks
+          persistentVolumeClaim:
+            claimName: checks-claim
