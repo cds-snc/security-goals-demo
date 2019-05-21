@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: si-2
+  namespace: security-goals
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: 'gcr.io/security-goals/checks/github-issues'
+          imagePullPolicy: Always
+          name: 'si-2'
+          env:
+            - name: ORIGIN
+              value: 'gcr.io/security-goals/checks/github-issues'
+            - name: COMPONENT
+              value: 'Infrastructure'
+            - name: DESCRIPTION
+              value: 'This application uses GitHub issues for flaw remediation.'
+            - name: SATISFIES
+              value: 'SI-2'
+            - name: REPO_URL
+              value: 'https://github.com/cds-snc/cra-alpha'
+          volumeMounts:
+            - name: compliance-checks
+              mountPath: /checks
+      volumes:
+        - name: compliance-checks
+          persistentVolumeClaim:
+            claimName: checks-claim
