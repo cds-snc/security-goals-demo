@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cm-2
+  namespace: security-goals
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - image: "gcr.io/security-goals/checks/url-exists"
+          imagePullPolicy: Always
+          name: "cm-2"
+          env:
+            - name: ORIGIN
+              value: "gcr.io/security-goals/checks/url-exists"
+            - name: COMPONENT
+              value: "Source code"
+            - name: DESCRIPTION
+              value: "'The application uses kubernetes configuration files to manage its state and information inventory in source control with a log of changes by users."
+            - name: SATISFIES
+              value: "CM-2"
+            - name: URL
+              value: "https://github.com/cds-snc/security-goals-demo/blob/master/manifests/overlays/gke/kustomization.yaml"
+          volumeMounts:
+            - name: compliance-checks
+              mountPath: /checks
+      volumes:
+        - name: compliance-checks
+          persistentVolumeClaim:
+            claimName: checks-claim
