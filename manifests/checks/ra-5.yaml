@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: 'kube-hunter-scan'
+  name: ra-5
   namespace: security-goals
 spec:
   template:
@@ -10,7 +10,7 @@ spec:
       containers:
         - image: 'gcr.io/security-goals/checks/kube-hunter-scan:latest'
           imagePullPolicy: Always
-          name: 'kube-hunter-scan'
+          name: ra-5
           env:
             - name: ORIGIN
               value: 'gcr.io/security-goals/checks/kube-hunter-scan:latest'
