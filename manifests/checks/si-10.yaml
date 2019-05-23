@@ -1,27 +1,27 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: sc-8
+  name: si-10
   namespace: security-goals
 spec:
   template:
     spec:
       restartPolicy: Never
       containers:
-        - image: 'gcr.io/security-goals/checks/https-scan:latest'
+        - image: "gcr.io/security-goals/checks/url-exists"
           imagePullPolicy: Always
-          name: sc-8
+          name: "si-10"
           env:
             - name: ORIGIN
-              value: 'gcr.io/security-goals/checks/https-scan:latest'
+              value: "gcr.io/security-goals/checks/url-exists"
             - name: COMPONENT
-              value: 'Infrastructure'
+              value: "Source code"
             - name: DESCRIPTION
-              value: 'This application follows the ITPIN guidelines'
+              value: "The application defines an API schema to validate inputs against."
             - name: SATISFIES
-              value: 'SC-8'
-            - name: DOMAIN
-              value: 'security-goals-demo.cdssandbox.xyz'
+              value: "SI-10"
+            - name: URL
+              value: "https://github.com/cds-snc/cra-alpha/blob/master/src/utils.js"
           volumeMounts:
             - name: compliance-checks
               mountPath: /checks
