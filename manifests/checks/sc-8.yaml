@@ -20,6 +20,8 @@ spec:
               value: 'This application follows the ITPIN guidelines'
             - name: SATISFIES
               value: 'sc-8'
+            - name: DOMAIN
+              value: 'security-goals-demo.cdssandbox.xyz'
           volumeMounts:
             - name: compliance-checks
               mountPath: /checks
