@@ -11,6 +11,8 @@ resources:
   - runner-service.yaml
   - pdf-report-deployment.yaml
   - pdf-report-service.yaml
+  - web-report-deployment.yaml
+  - web-report-service.yaml
   - cluster-role-binding.yaml
   - cluster-role.yaml
   - traefik-ingress.yaml

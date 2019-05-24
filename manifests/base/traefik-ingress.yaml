@@ -25,3 +25,7 @@ spec:
             backend:
               serviceName: pdf-report
               servicePort: 3000
+          - path: /web-report
+            backend:
+              serviceName: web-report
+              servicePort: 3000
