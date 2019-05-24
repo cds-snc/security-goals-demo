@@ -1,25 +1,27 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: ra-5
+  name: sc-8
   namespace: security-goals
 spec:
   template:
     spec:
       restartPolicy: Never
       containers:
-        - image: 'gcr.io/security-goals/checks/kube-hunter-scan:latest'
+        - image: 'gcr.io/security-goals/checks/https-scan:latest'
           imagePullPolicy: Always
-          name: ra-5
+          name: sc-8
           env:
             - name: ORIGIN
-              value: 'gcr.io/security-goals/checks/kube-hunter-scan:latest'
+              value: 'gcr.io/security-goals/checks/https-scan:latest'
             - name: COMPONENT
               value: 'Infrastructure'
             - name: DESCRIPTION
-              value: 'The app uses Kube Hunter to scan for vulnerabilities.'
+              value: 'This application follows the ITPIN guidelines'
             - name: SATISFIES
-              value: 'RA-5'
+              value: 'SC-8'
+            - name: DOMAIN
+              value: 'security-goals-demo.cdssandbox.xyz'
           volumeMounts:
             - name: compliance-checks
               mountPath: /checks
