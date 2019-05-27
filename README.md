@@ -14,7 +14,7 @@ You can stand up your own version of this application using [minikube](https://k
 
 ### Running on GKE
 
-TO run this demo on GKE you will need to complete a couple or preperatory steps.
+To run this demo on GKE you will need to complete a couple or preperatory steps.
 
 1. Ensure your Google Account user has access to the cluster. Add your username in this [file](https://github.com/cds-snc/security-goals-demo/blob/master/manifests/overlays/gke/gke-cluster-admin.yaml#L12) and run `kubectl apply -f manifests/overlays/gke/gke-cluster-admin.yaml`).
 
