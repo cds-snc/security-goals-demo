@@ -30,6 +30,8 @@ spec:
               value: '3000'
             - name: API_URL
               value: 'https://security-goals-demo.cdssandbox.xyz/security-goals/api'
+            - name: RELATIVE_PATH
+              value: '/performance-index'
           resources: {}
           livenessProbe:
             httpGet:
