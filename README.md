@@ -6,7 +6,8 @@ Links to various components:
 
 - [API interface](https://security-goals-demo.cdssandbox.xyz/security-goals/api)
 - [Web report](https://security-goals-demo.cdssandbox.xyz/web-report/)
-- [PDF report](https://security-goals-demo.cdssandbox.xyz/pdf-report/report)
+- [PDF report](https://security-goals-demo.cdssandbox.xyz/pdf-report/)
+- [Performance index](https://security-goals-demo.cdssandbox.xyz/performance-index/)
 
 ### Running locally
 
